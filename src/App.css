@@ -1,38 +1,411 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+:root {
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --box-hover: 0 2px 6px rgba(0, 0, 0, 0.24), 0 2px 4px rgba(0, 0, 0, 0.48);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: #f2ebe6;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  margin: 30px auto;
+  width: 350px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+h1 {
+  display: flex;
+  justify-content: space-between;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+h1 span {
+  align-self: center;
+  font-size: 24px;
+}
+
+h2 {
+  margin: 30px 0 0 0;
+  font-size: 16px;
+}
+
+h3 {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #bbb;
+  padding-bottom: 10px;
+  margin: 30px 0 10px;
+}
+
+h3 span {
+  align-self: center;
+  font-size: 12px;
+}
+
+h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding-left: 10px;
+  border-left: 5px solid #6d4c41;
+}
+
+.progress {
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+  padding: 20px 10px;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  margin-top: 10px;
+}
+
+.progress > div {
+  flex: 1;
+  text-align: center;
+}
+
+.progress > div:nth-child(2) {
+  border-left: 2px solid #dedede;
+  border-right: 2px solid #dedede;
+}
+
+.money {
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin: 5px 0;
+  font-weight: bold;
+}
+
+.money.budget {
+  color: #0d47a1;
+}
+
+.money.used {
+  color: #b71c1c;
+}
+
+.money.available {
+  color: #1b5e20;
+}
+
+Link {
+  text-decoration: none;
+}
+
+.item-amount,
+.category-date {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-date {
+  margin-top: 10px;
+}
+
+label {
+  display: inline-block;
+  margin: 5px 0 5px 2px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+input[type='text'],
+input[type='date'],
+input[type='number'],
+select {
+  display: block;
+  padding: 7.5px;
+  padding-left: 10px;
+  padding-top: 8.5px;
+  width: 170px;
+  height: 35px;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #999;
+  border-radius: 2px;
+  outline-color: #7f7f7f;
+}
+
+.btn {
+  display: block;
+  margin: 20px 0 30px;
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  color: #fff;
+  background-color: #664235;
+  /* box-shadow: var(--box-shadow); */
+  border: 0;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 10px;
+  text-transform: uppercase;
+  transition: 0.25s ease-out;
+}
+
+.btn:hover {
+  background-color: #52352a;
+}
+
+.btn:focus,
+.delete-btn:focus {
+  outline: 0;
+}
+
+.list {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  padding: 0;
+  list-style-type: none;
+}
+
+.list.expenses li {
+  justify-content: space-between;
+}
+
+.list li {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  background-color: #fff;
+  box-shadow: var(--box-shadow);
+}
+
+.chart {
+  margin-top: 50px;
+}
+
+h4 span {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+h4 span:hover {
+  /* font-size: 13px; */
+}
+
+.sort {
+  display: flex;
+  justify-content: space-around;
+}
+
+.date {
+  text-align: left;
+  width: 50px;
+}
+
+.middle {
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+}
+
+.text {
+  text-align: left;
+}
+
+.amount {
+  text-align: right;
+  width: 50px;
+}
+
+.list li {
+  /* border-right: 7.5px solid white; */
+  padding-right: 15px;
+  padding-left: 15px;
+  transition: 0.3s;
+}
+
+.list li.plus {
+  border-left: 7.5px solid #2ecc71;
+}
+
+.list li.minus {
+  border-right: 7.5px solid #c0392b;
+}
+
+.list li.CATEGORY {
+  border-left: 7.5px solid #795548;
+}
+
+.list li.Food {
+  border-left: 7.5px solid darkgreen;
+}
+
+.list li.Groceries {
+  border-left: 7.5px solid darkkhaki;
+}
+
+.list li.Shopping {
+  border-left: 7.5px solid darkred;
+}
+
+.list li.Hangout {
+  border-left: 7.5px solid darkblue;
+}
+
+.list li.Occasion {
+  border-left: 7.5px solid darkturquoise;
+}
+
+.list li.Activity {
+  border-left: 7.5px solid darkcyan;
+}
+
+.list li.Fun {
+  border-left: 7.5px solid darkcyan;
+}
+
+.list li.Bill {
+  border-left: 7.5px solid darkorange;
+}
+
+.list li.Home {
+  border-left: 7.5px solid darksalmon;
+}
+
+.list li.Health {
+  border-left: 7.5px solid darkmagenta;
+}
+
+.list li.Gas {
+  border-left: 7.5px solid darkgray;
+}
+
+.list li.Travel {
+  border-left: 7.5px solid black;
+}
+
+.list li:hover {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  /* margin: 0; */
+  padding-left: 12px;
+  /* margin: 15px 0; */
+  /* font-size: 15px; */
+  color: #000;
+  border-width: 10.5px;
+  cursor: pointer;
+  box-shadow: var(--box-hover);
+}
+
+.delete-btn {
+  position: absolute;
+  top: 50%;
+  left: 109%;
+  padding: 2px 5px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 20px;
+  border: 0;
+  color: #fff;
+  background-color: #e74c3c;
+  transform: translate(-100%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* .list li:hover .delete-btn {
+  opacity: 1;
+} */
+
+.history {
+}
+
+.editForm {
+  display: grid;
+  /* justify-content: space-between; */
+  grid-column-gap: 10px;
+  grid-template-areas:
+    'info1 info2'
+    'button button';
+  grid-template-columns: 1fr 1fr;
+  margin: 0 9px;
+  width: 95%;
+}
+
+.editButtons {
+  display: flex;
+}
+
+.info1 {
+  grid-area: info1;
+}
+
+.info2 {
+  grid-area: info2;
+}
+
+.editButtons {
+  display: flex;
+  justify-self: center;
+  width: 95%;
+}
+
+.editButtons .edit {
+  background-color: #68493e;
+}
+
+.editButtons .delete {
+  background-color: rgb(138, 24, 24);
+}
+
+.editForm label {
+  margin-left: 5px;
+  margin-bottom: 7.5px;
+}
+
+.charts {
+  color: #aaa;
+}
+
+.selected {
+  color: #555;
+}
+
+.signature {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
+}
+
+.cheese {
+  height: 14px;
+  width: 14px;
+}
+
+.myname {
+  margin: 0;
+  font-size: 12px;
+}
+
+.signin {
+  margin-bottom: 20px;
 }
